@@ -182,7 +182,5 @@ def main():
     string += "\n@enduml"
     print(auto_indent(string))
 
-    print(classes)
-
 if __name__ == "__main__":
     main()
