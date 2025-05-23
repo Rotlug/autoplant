@@ -84,7 +84,7 @@ class Class:
             elif line.startswith("public class"):
                 self.name = get_word(line, 3)
                 self.extends = get_word(line, 5)
-            elif (indent(line) == 1) and (not line.endswith("}")):
+            elif (indent(line) == 1) and (not line.strip() == "}"):
                 if "=" in line or line.endswith(";"):
                     if (len(line.strip()) < 3): continue # Get rid of various ); and }; and so on
                     line = add_explicit_protected(line)
@@ -95,14 +95,12 @@ class Class:
                     line = line.replace("final ", "")
                     line = line.replace("static ", "")
 
-                    prop.signature = get_word(line, 3);
+                    prop.signature = get_word(line, 3)
                     prop.set_visibility(get_word(line, 1))
                     prop.return_type = get_word(line, 2)
 
                     self.properties.append(prop)
-                    # print(prop)
-                    # print(line)
-                elif  get_words(line)[-1].startswith("{"):
+                elif "{" in get_words(line):
                     line = add_explicit_protected(line)
                     line = line.replace("static ", "")
 
