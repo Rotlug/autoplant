@@ -4,7 +4,7 @@ autoplant is a very primitive tool that converts a bunch of .java files into a P
 
 ### Limitations
 
-- Doesn't support grouping variables together
+- Doesn't support grouping variables together  
   for example:
 
 ```java
@@ -12,6 +12,14 @@ float x, y = 0;
 ```
 
 - Only works on public classes
+
+- The functions parentheses must be formatted in this way:
+
+```java
+public void Example {
+
+}
+```
 
 ### How to use
 
