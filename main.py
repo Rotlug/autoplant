@@ -103,6 +103,7 @@ class Class:
                 elif "{" in get_words(line):
                     line = add_explicit_protected(line)
                     line = line.replace("static ", "")
+                    line = line.replace("synchronized ", "")
 
                     # HANDLE METHODS
                     method = Method()
