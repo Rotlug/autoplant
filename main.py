@@ -3,6 +3,7 @@ import os
 OPEN_PARS = "(<"
 CLOSE_PARS = ")>"
 
+# Helper Functions
 def indent(line: str):
     i = 0
     while line.startswith("    "):
@@ -161,6 +162,20 @@ class Method:
                 self.visibility = Method.DEFAULT
 
 def main():
+    classes = get_all_classes()
+
+    string = "@startuml\n"
+    for c in classes:
+        string += f"{c}"
+
+    for c in classes:
+        if (c.extends != "" and c.extends + ".java" in os.listdir("classes")):
+            string += f"{c.extends} <|-- {c.name}\n"
+
+    string += "\n@enduml"
+    print(auto_indent(string))
+
+def get_all_classes():
     classes: list[str] = []
     for filename in os.listdir("classes"):
         if (filename.endswith(".java")):
@@ -170,16 +185,7 @@ def main():
     for c in classes:
         class_objects.append(Class(f"classes/{c}"))
 
-    string = "@startuml\n"
-    for c in class_objects:
-        string += f"{c}"
-
-    for c in class_objects:
-        if (c.extends != "" and c.extends + ".java" in classes):
-            string += f"{c.extends} <|-- {c.name}\n"
-
-    string += "\n@enduml"
-    print(auto_indent(string))
+    return class_objects
 
 if __name__ == "__main__":
     main()
