@@ -13,11 +13,11 @@ float x, y = 0;
 
 - Only works on public classes
 
-- The functions parentheses must be formatted in this way:
+- The method's parentheses must be formatted in this way:
 
 ```java
-public void Example {
-
+public void Example() {
+  // Something here ...
 }
 ```
 
